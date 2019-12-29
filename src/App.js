@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Error from "./components/Error";
+import Clima from "./components/Clima";
 
 function App() {
 
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [error, setError] = useState(false);
+  const [result, getResult] = useState({})
 
   useEffect(() => {
     //prevenir ejecución
@@ -19,10 +21,10 @@ function App() {
       //consultar la URL
       const reply = await fetch(url);
       const result = await reply.json();
-  
-      console.log(result);
+      getResult(result);
     }
      
+    getAPI();
   }, [city, country]);
 
   const dataSearch = data => {
@@ -45,7 +47,9 @@ function App() {
     component = <Error message="Los dos campos son obligatorios" />;
   }else{
     //Mostrar el clima
-    component = null;
+    component = <Clima 
+                  result={result}
+                />;
   }
 
   return (

@@ -4,7 +4,7 @@ const Clima = ({result}) => {
   
   console.log(result);
   //Extraer valores con destructuring
-  const {name, main, weather} = result
+  const {name, main} = result
 
   if(!name) return null;
 

@@ -45,7 +45,9 @@ function App() {
   if (error) {
     //Hay un error, mostrarlo
     component = <Error message="Los dos campos son obligatorios" />;
-  }else{
+  }else if(result.cod === '404'){
+    component = <Error message="El municipio no existe en el pais que seleccionaste" />;
+  } else{
     //Mostrar el clima
     component = <Clima 
                   result={result}
